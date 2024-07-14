@@ -3,37 +3,32 @@ document.addEventListener('DOMContentLoaded', function () {
     const taskList = document.getElementById('taskList');
     let tasks = [];
 
-    // Function to add a task
     function addTask() {
-        const input = document.getElementById('input'); // Get the input element
+        const input = document.getElementById('input'); 
         const inputvalue = input.value.trim();
 
         if (inputvalue !== '') {
             tasks.push(inputvalue);
-            input.value = ''; // Clear input field
-
-
+            input.value = ''; 
+            displayTasks(); 
         } else {
             alert("Please enter a valid task.");
         }
     }
-    displayTasks();
-
-    // Function to display tasks in the list
     function displayTasks() {
-        taskList.innerHTML = ''; // Clear previous list
-        const li = document.createElement('li');
-        li.textContent = inputvalue;
-        taskList.appendChild(li);
+        taskList.innerHTML = ''; 
+        tasks.forEach((task) => {
+            const li = document.createElement('li');
+            li.textContent = task;
+            taskList.appendChild(li);
+        });
     }
 
-    // Event listener for Enter key press
     document.getElementById('input').addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             addTask();
         }
     });
 
-    // Event listener for Add button click
     addbtn.addEventListener('click', addTask);
 });
